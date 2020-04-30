@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace WebScraping_wf.cs
@@ -11,6 +11,7 @@ namespace WebScraping_wf.cs
     public partial class Form1 : Form
     {
         public string url = string.Empty;
+        public long lineNumberCounter;
         public Form1()
         {
             InitializeComponent();
@@ -18,21 +19,24 @@ namespace WebScraping_wf.cs
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            lineNumberCounter = long.Parse(queryConfig("lineCount - "));
+            //https://www.weatherforyou.com/reports/index.php?pands=brunswick%2Cmaine
+            //https://www.ebay.com/sch/i.html?_nkw=Chemical+Suits&_in_kw=1&_ex_kw=&_sacat=0&_udlo=&_udhi=&_ftrt=901&_ftrv=1&_sabdlo=&_sabdhi=&_samilow=&_samihi=&_sadis=15&_stpos=&_sargn=-1%26saslc%3D1&_salic=1&_sop=12&_dmd=1&_ipg=50&_fosrp=1
         }
 
         private void loadUpHtml()
         {
-            StreamWriter writer = new StreamWriter("RawHtml.txt");
+            string htmlFile = queryConfig("rawHtmlFile - ");
+            StreamWriter writer = new StreamWriter(htmlFile);
             writer.Write("");
             writer.Close();
             writer.Dispose();
             WebClient client = new WebClient();
-            client.DownloadFile(url, "RawHtml.txt");
+            client.DownloadFile(url, htmlFile);
             if (ShowHtmlRawRB.Checked == true)
             {
                 ShowHtmlRawRB.Checked = false;
-                Process.Start("RawHtml.txt");
+                Process notePad = Process.Start(htmlFile);
                 client.Dispose();
                 scrap();
             }
@@ -41,31 +45,82 @@ namespace WebScraping_wf.cs
                 client.Dispose();
                 scrap();
             }
+            OpenURLInBrowser(UrlTextBox.Text);
         }
 
-        private async void scrap()
+        private void OpenURLInBrowser(string url)
+        {
+            if (!url.StartsWith("http://") && !url.StartsWith("https://"))
+            {
+                url = "http://" + url;
+            }
+
+            try
+            {
+                webBrowser1.Navigate(new Uri(url));
+            }
+            catch (System.UriFormatException)
+            {
+                return;
+            }
+        }
+
+        private void scrap()
         {
             //<summary>
             //Scraps the webpage for the requested data
             //<summary>
-            var httpClient = new HttpClient(); //creates httpClient
-            var html = await httpClient.GetStringAsync(url); //not sure what the await is doing
-            var htmlDocument = new HtmlAgilityPack.HtmlDocument(); //creates the htmmlDocument
-            htmlDocument.LoadHtml(html); //loads htmlDoc
-
-            var ProductList = htmlDocument.DocumentNode.Descendants(queryConfig("Descendants - ").ToString()).Where(node => node.GetAttributeValue(queryConfig("Attribute - ").ToString(), "").Equals(queryConfig("ListViewInner - ").ToString().ToList())); //gets the right data
-            foreach (var item in ProductList)
+            string rawHtml = queryConfig("rawHtmlFile - ");
+            StreamReader reader = new StreamReader(rawHtml);
+            foreach(string line in File.ReadAllLines(rawHtml))
             {
-                postProcess(item.InnerHtml, item.InnerLength, item.InnerText, item.InnerStartIndex); //pass over the data it finds to the 
-            }
-        }
+                lineNumberCounter++;
+                //MessageBox.Show(line);
+                //string 
+                //MessageBox.Show(queryConfig("First - "));
+                //MessageBox.Show(queryConfig("Second - "));
+                if(line.Contains(queryConfig("First - ")) == true && line.Contains(queryConfig("Second - ")) == true)
+                {
+                    //MessageBox.Show("Item found", $"Item found at line number: {lineNumberCounter}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(line + "Found at line: " + lineNumberCounter.ToString());
+                    postProcess(line, lineNumberCounter);
+                    StreamWriter writer = new StreamWriter("PostProcessOutput.txt");
+                    writer.WriteLine(line);
+                    writer.WriteLine($"Found at line number: {lineNumberCounter}");
+                    writer.Close();
+                    writer.Dispose();
+                    Process.Start("PostProcessOutput.txt");
+                }
+                else
+                {
 
-        private void postProcess(string InnerHtml, int InnerLenght, string InnerText, int StartIndex)
+                }
+            }
+            reader.Dispose();
+        }
+        /*
+         *                 int indexOfFirstQuotes = subOfContent.IndexOf(
+                string subOfContentQuotes = subOfContent.
+         */
+
+        private void postProcess(string item, long lineNumber)
         {
             //<summary>
             //will take care of cleaning up the above strings 
             //InnerText is the string you want Gabby
             //<summary>
+            //MessageBox.Show($"item: {item}");
+            //MessageBox.Show($"lineNumber: {lineNumber}");
+            try
+            {
+                int altIndex = item.IndexOf("alt="); //find alt
+                string overView = item.Substring(altIndex, 45); //gets the daliy weather overview
+                MessageBox.Show(overView);
+            }
+            catch
+            {
+
+            }
         }
 
         public string queryConfig(string idOfItem)
@@ -84,6 +139,7 @@ namespace WebScraping_wf.cs
                     return item;
                 }
             }
+            reader.Dispose();
             return $"No item with the give ID [ {idOfItem} ] was found"; //if it can't find the item
         }
 
@@ -102,6 +158,22 @@ namespace WebScraping_wf.cs
                 url = UrlTextBox.Text;
                 loadUpHtml();
             }
+        }
+
+        private void showConfigbtn_Click(object sender, EventArgs e)
+        {
+            //<summary>
+            //shows config file
+            //and changes buttons look
+            //<summary>
+            Thread thread = new Thread(new ThreadStart(thread1));
+            thread.Start();
+        }
+
+        void thread1()
+        {
+            Process.Start("Form1FunctionConfig.txt");
+            showConfigbtn.BackColor = Color.Green;
         }
     }
 }

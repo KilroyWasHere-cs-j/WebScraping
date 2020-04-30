@@ -1,5 +1,13 @@
-﻿Descendants - ul
+﻿First - <tr><td colspan='2' style='background:
 
-Attribute - id
+Second -  
 
-Equals - LisViewInner
+startChar - <
+
+endChar - .
+
+lineCount - 0
+
+rawHtmlFile - RawHtml.txt
+
+http? - http://
