@@ -10,7 +10,7 @@ namespace WebScraping_wf.cs
 {
     public partial class Form1 : Form
     {
-        public string url = string.Empty;
+        public string url = "https://www.weatherforyou.com/reports/index.php?pands=brunswick%2Cmaine";
         public long lineNumberCounter;
         public Form1()
         {
@@ -19,8 +19,24 @@ namespace WebScraping_wf.cs
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //<summary>
+            //load the html from the web page into a txt file for later refernce
+            //also insures that the URL input text box has something in it 
+            //<summary>
+            loadUpHtml();
             lineNumberCounter = long.Parse(queryConfig("lineCount - "));
-            //https://www.weatherforyou.com/reports/index.php?pands=brunswick%2Cmaine
+            if(queryConfig("ClearOutputFile - ") == "True")
+            {
+                StreamWriter cleaner = new StreamWriter(queryConfig("OutputFile - "));
+                cleaner.Write($"Last cleaned at: {getDateTime()}");
+                cleaner.Close();
+                cleaner.Dispose();
+            }
+            else
+            {
+
+            }
+            //https://www.weatherforyou.com/reports/index.php?pands=brunswick%2Cmaine  
             //https://www.ebay.com/sch/i.html?_nkw=Chemical+Suits&_in_kw=1&_ex_kw=&_sacat=0&_udlo=&_udhi=&_ftrt=901&_ftrv=1&_sabdlo=&_sabdhi=&_samilow=&_samihi=&_sadis=15&_stpos=&_sargn=-1%26saslc%3D1&_salic=1&_sop=12&_dmd=1&_ipg=50&_fosrp=1
         }
 
@@ -32,11 +48,11 @@ namespace WebScraping_wf.cs
             writer.Close();
             writer.Dispose();
             WebClient client = new WebClient();
-            client.DownloadFile(url, htmlFile);
+            client.DownloadFile(url, "RawHtml.txt"); // needs try catch [404] error
             if (ShowHtmlRawRB.Checked == true)
             {
                 ShowHtmlRawRB.Checked = false;
-                Process notePad = Process.Start(htmlFile);
+                //Process notePad = Process.Start(htmlFile);
                 client.Dispose();
                 scrap();
             }
@@ -45,7 +61,7 @@ namespace WebScraping_wf.cs
                 client.Dispose();
                 scrap();
             }
-            OpenURLInBrowser(UrlTextBox.Text);
+            //OpenURLInBrowser(UrlTextBox.Text);
         }
 
         private void OpenURLInBrowser(string url)
@@ -57,7 +73,7 @@ namespace WebScraping_wf.cs
 
             try
             {
-                webBrowser1.Navigate(new Uri(url));
+                
             }
             catch (System.UriFormatException)
             {
@@ -82,14 +98,12 @@ namespace WebScraping_wf.cs
                 if(line.Contains(queryConfig("First - ")) == true && line.Contains(queryConfig("Second - ")) == true)
                 {
                     //MessageBox.Show("Item found", $"Item found at line number: {lineNumberCounter}", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MessageBox.Show(line + "Found at line: " + lineNumberCounter.ToString());
-                    postProcess(line, lineNumberCounter);
-                    StreamWriter writer = new StreamWriter("PostProcessOutput.txt");
+                    //  MessageBox.Show(line + "Found at line: " + lineNumberCounter.ToString());
+                    StreamWriter writer = new StreamWriter("TextFile1.txt");
                     writer.WriteLine(line);
-                    writer.WriteLine($"Found at line number: {lineNumberCounter}");
                     writer.Close();
-                    writer.Dispose();
-                    Process.Start("PostProcessOutput.txt");
+                    //Process.Start("TextFile1.txt");
+                    postProcess(line, lineNumberCounter);
                 }
                 else
                 {
@@ -111,16 +125,70 @@ namespace WebScraping_wf.cs
             //<summary>
             //MessageBox.Show($"item: {item}");
             //MessageBox.Show($"lineNumber: {lineNumber}");
+            string output = string.Empty;
             try
             {
-                int altIndex = item.IndexOf("alt="); //find alt
-                string overView = item.Substring(altIndex, 45); //gets the daliy weather overview
-                MessageBox.Show(overView);
+                int altIndex = item.IndexOf(queryConfig("FirstIndex - ")); //find alt=
+                string overView = item.Substring(altIndex, 40); //gets the daliy weather overview
+                output += overView;
+
+
+                //find "Day:"
+
+                int dayIndex = item.IndexOf(queryConfig("SecondIndex - ")); // find Day:
+                string day = item.Substring(dayIndex, 70);
+                output += "\n" + day;
+                printOutData(output);
+
             }
             catch
             {
 
             }
+
+        }
+
+        private void printOutData(string data)
+        {
+            string outPutFile = queryConfig("OutputFile - ");
+            string file = string.Empty;
+            StreamReader reader = new StreamReader(outPutFile);
+            file = reader.ReadToEnd();
+            reader.Close();
+            StreamWriter writer = new StreamWriter(outPutFile);
+            writer.WriteLine(file + "\n \n");
+            writer.WriteLine($"________________{getDateTime()}________________________");
+            writer.WriteLine("\n \n");
+            writer.WriteLine(data);
+            writer.WriteLine("\n \n");
+            writer.WriteLine("_________________________________________________________________");
+            writer.Close();
+            if(queryConfig("ShowOutputText - ") == "True")
+            {
+                Process.Start(outPutFile);
+            }
+            else
+            {
+
+            }
+            if(queryConfig("AutoClose - ") == "True")
+            {
+                this.Close();
+            }
+            else
+            {
+
+            }
+            reader.Dispose();
+            writer.Dispose();
+        }
+
+        private string getDateTime()
+        {
+            DateTime dateTime = DateTime.Now;
+            string date = dateTime.ToString("D");
+            string time = dateTime.ToString("HH:mm");
+            return date + " " + time;
         }
 
         public string queryConfig(string idOfItem)
@@ -149,13 +217,13 @@ namespace WebScraping_wf.cs
             //load the html from the web page into a txt file for later refernce
             //also insures that the URL input text box has something in it 
             //<summary>
-            if(UrlTextBox.Text == string.Empty)
+            if(url == string.Empty)
             {
                 MessageBox.Show("URLError", "Please Enter vaild URL");
             }
             else
             {
-                url = UrlTextBox.Text;
+                url = url;
                 loadUpHtml();
             }
         }

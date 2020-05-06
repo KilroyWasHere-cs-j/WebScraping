@@ -1,13 +1,37 @@
-﻿First - <tr><td colspan='2' style='background:
+﻿// First param to look for html block in
+First - <tr><td colspan='2' style='background:
 
+// Second param to look for html block in
 Second -  
 
+// First char to sort by
+FirstIndex - alt=
+
+// Second char to sort by
+SecondIndex - Day:
+
+// Starting search char 
 startChar - <
 
+// Ending search char
 endChar - .
 
+// Starting value for line counter
 lineCount - 0
 
+// File to output the raw html to
 rawHtmlFile - RawHtml.txt
 
+// String to add in front of URLs
 http? - http://
+
+ShowOutputText - True
+
+// Closes app after all processes are done
+AutoClose - True
+
+// File to output found data to
+OutputFile - C:\\TxtFiles\\WeatherTempTracker.txt
+
+// Clear output file of all info
+ClearOutputFile - False
