@@ -1,1 +1,416 @@
-﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Brunswick Maine Local Weather Forecasts and Conditions - WeatherForYou.com</title>
+	<meta name="description" content="Brunswick, ME, local weather including current conditions, extended forecasts, alerts, Maine weather map and more." />
+	<meta name="keywords" content="weather,Brunswick weather,Brunswick,Brunswick Maine weather,Brunswick Maine local weather,Brunswick Maine weather forecast,local Brunswick weather,Maine weather,Brunswick weather report,current weather in Brunswick,weather outlook for Brunswick,Brunswick weather conditions,04011 weather,conditions,forecast,forecasts,forcast,forcasts,current conditions,temperature,humidity,dew point,wind,barometer" />
+	<meta http-equiv="Refresh" content="1800" />
+	<meta name="ICBM" content="43.914, -69.966" />
+	<link rel="canonical" href="https://www.weatherforyou.com/reports/index.php?pands=brunswick%2Cmaine" />
+	<link rel="stylesheet" type="text/css" href="/reports/style/calendar/calendar_161103.min.css" />
+	<link rel="stylesheet" type="text/css" href="/reports/style/tabstyle_zandh141012b_min.css" />
+    <link media="screen" type="text/css" rel="stylesheet" href="/leaflet/leaflet.css">
+    <link rel="stylesheet" href="/aeris/osm/zandh_radar_1610.css"/>
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta content='(pics-1.1 http://www.icra.org/ratingsv02.html comment icraonline v2.0 l r (cz 1 lz 1 nz 1 oz 1 vz 1) gen true for http://www.weatherforyou.com r (nz 1 vz 1 lz 1 oz 1 cz 1) http://www.rsac.org/ratingsv01.html l r (n 0 s 0 v 0 l 0) gen true for http://www.weatherforyou.com r (n 0 s 0 v 0 l 0) http://www.classify.org/safesurf/ l gen true for http://www.weatherforyou.com/ r (ss~~000 1))' />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="https://d2hhjsu0v3gh4o.cloudfront.net/css/141012c/global_menus.min.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" href="https://d2hhjsu0v3gh4o.cloudfront.net/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="https://d2hhjsu0v3gh4o.cloudfront.net/favicon.ico" type="image/x-icon" />
+	<style type="text/css">
+		<!--
+			@charset "utf-8";
+			body,html {
+			margin:0;
+			padding:0;
+			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+			font-size: 13px;
+			background-color:white;
+			text-decoration:none
+			}
+			a:link {
+				color: #666;
+				text-align: right;
+				text-decoration: none;
+			}
+			#container{margin:0 auto;width:1000px;background:#fff;}
+			.headerText {  font-size: 18px; font-weight: bold; color: #133960;}
+		-->
+	</style>
+	<link href="https://d2hhjsu0v3gh4o.cloudfront.net/reports/style/hw-min-141012a.css" rel="stylesheet" type="text/css" />
+<meta name="viewport" content="width=1000" />
+<script data-cfasync="false" type="text/javascript">
+  var freestar = freestar || {};
+  freestar.hitTime = Date.now();
+  freestar.queue = freestar.queue || [];
+  freestar.config = freestar.config || {};
+  freestar.debug = window.location.search.indexOf('fsdebug') === -1 ? false : true;
+  freestar.config.enabled_slots = [];
+  !function(a,b){var c=b.getElementsByTagName("script")[0],d=b.createElement("script"),e="https://a.pub.network/weatherforyou-com";e+=freestar.debug?"/qa/pubfig.min.js":"/pubfig.min.js",d.async=!0,d.src=e,c.parentNode.insertBefore(d,c)}(window,document);
+  freestar.initCallback = function () { (freestar.config.enabled_slots.length === 0) ? freestar.initCallbackCalled = false : freestar.newAdSlots(freestar.config.enabled_slots) }
+</script>
+
+</head>
+<body >
+<div id="container" style="width:1000px; margin: 0 auto;">
+	<div id="header">
+		<table style="width:1000px; border:0; border-spacing:2px; border-collapse:separate; padding:1px;">
+			<tr>
+				<td style="width:770px;">
+					<div id="topborder" style="width:720px;">
+						<div style="float:left; width:390px;">
+							<img src="https://d2hhjsu0v3gh4o.cloudfront.net/images/theme1310b/weatherforyou_logo_374x50_transparent.png" style="width:374px; height:50px; border:0px;" alt="logo" />
+						</div>
+						<div style="float:right; width:330px;">
+							<form name="getforecast" style="margin:10px;" action="/reports/index.php" method="get">
+								Enter place, zip code or ICAO<br />
+								<input type="hidden" name="config" value="" />
+								<input type="hidden" name="forecast" value="zandh" />
+								<input id="pands" type="text" class="zip" style="width: 200px;" value="" name="pands" />
+								<input type="submit" value="Get Weather" name="Submit" />
+							</form>
+						</div>
+					</div>
+				</td>
+				<td rowspan="2" style="width:230px; vertical-align:top;">
+					<script type="text/javascript">
+						 //<![CDATA[
+						document.write('<span style=\"font-weight:bold; font-size:18px; color:black;\">Your Favorites</span> &nbsp;&nbsp;<a href=\"/favorites/\" style=\"text-decoration:none;\"><span style=\"font-style:italic; color:black;\">Manage</span></a><br />');
+						function getCookie(name)
+						{var re=new RegExp(name+"=([^;]+)");var value=re.exec(document.cookie);return(value!=null)?unescape(value[1]):null;}
+						var favplace1=(getCookie("favplace1"));
+						var favplace2=(getCookie("favplace2"));
+						var favplace3=(getCookie("favplace3"));
+						var favplace4=(getCookie("favplace4"));
+						var favplace5=(getCookie("favplace5"));
+						if (( favplace1 == null ) && ( favplace2 == null ) && ( favplace3 == null ) && ( favplace4 == null ) && ( favplace5 == null )) { document.write('<a href=\"/favorites/\"><span style=\"font-size:14px; color:black;\">Click here to add favorites</span></a><br />'); }
+						if ( favplace1 !== null ) { document.write('<a href=\"/reports/index.php?forecast=zandh&pands=' + favplace1 + '\"><span style=\"font-size:16px; color:black; line-height:20px;\">' + favplace1 + '</span></a><br />'); }
+						if ( favplace2 !== null ) { document.write('<a href=\"/reports/index.php?forecast=zandh&pands=' + favplace2 + '\"><span style=\"font-size:16px; color:black; line-height:20px;\">' + favplace2 + '</span></a><br />'); }
+						if ( favplace3 !== null ) { document.write('<a href=\"/reports/index.php?forecast=zandh&pands=' + favplace3 + '\"><span style=\"font-size:16px; color:black; line-height:20px;\">' + favplace3 + '</span></a><br />'); }
+						if ( favplace4 !== null ) { document.write('<a href=\"/reports/index.php?forecast=zandh&pands=' + favplace4 + '\"><span style=\"font-size:16px; color:black; line-height:20px;\">' + favplace4 + '</span></a><br />'); }
+						if ( favplace5 !== null ) { document.write('<a href=\"/reports/index.php?forecast=zandh&pands=' + favplace5 + '\"><span style=\"font-size:16px; color:black; line-height:20px;\">' + favplace5 + '</span></a><br />'); }
+						//]]>
+					</script>
+				</td>
+			</tr>
+			<tr>
+				<td style="height:90px;">
+<div align="center" id="weatherforyou_728x90_468x60_Top">
+<script data-cfasync="false" type="text/javascript">
+    freestar.config.enabled_slots.push({ placementName: "weatherforyou_728x90_468x60_Top", slotId: "weatherforyou_728x90_468x60_Top" });
+</script>
+</div>
+
+				</td>
+			</tr>
+		</table>
+		<div style="clear:both;"></div>
+	</div>
+<div id="topmenu" style="background-image:url('https://d2hhjsu0v3gh4o.cloudfront.net/images/theme1104b/menu_bg.gif');">
+<ul id="qm0" class="qmmc">
+	<li><a href="/" title="">Home</a></li>
+	<li><a class="qmparent" href="JavaScript:void(0);" title="">Latest</a>
+		<ul>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=buoyworld" title="">Buoy Data</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=current_map&amp;hwvWxType=cloud-cover&amp;hwvMapRegion=us" title="">Cloud Cover</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=current_map&amp;hwvWxType=dew-points&amp;hwvMapRegion=us" title="">Dew Point</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=palmerindex&amp;alt=droughtcrop&amp;hwvMapType=ip1" title="Drought &amp; Crop Moisture">Drought &amp; Crop Moisture</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=current_map&amp;hwvWxType=feels-like&amp;hwvMapRegion=us" title="">Feels Like</a></li>
+		<li><a href="/reports/index.php?config=&forecast=pass&pass=frontsday1" title="">Fronts</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=current_map&amp;hwvWxType=heat-index&amp;hwvMapRegion=us" title="">Heat Index</a></li>
+		<li><a href="/reports/index.php?forecast=pass&pass=lightning&state=us" title="">Lightning</a></li>
+		<li><a href="http://www.pwsweather.com/tools.php" title="">Personal Weather Stations</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=current_map&amp;hwvWxType=humidity&amp;hwvMapRegion=us" title="">Relative Humidity</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=current_map&amp;hwvWxType=precip&amp;hwvMapRegion=us" title="">Precipitation (1 Hour)</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=riversfront" title="">Rivers &amp; Lakes</a></li>
+		<li><a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=traffic" title="">Roads &amp; Traffic Info</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=skireport" title="">Ski Reports</a></li>
+		<li><a href="/maps/snow_depth/" title="">Snow Depth</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=current_map&amp;hwvWxType=temperatures&amp;hwvMapRegion=us" title="">Temperature</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=current_map&amp;hwvWxType=visibility&amp;hwvMapRegion=us" title="">Visibility</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=current_map&amp;hwvWxType=windchill&amp;hwvMapRegion=us" title="">Wind Chill</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=current_map&amp;hwvWxType=wind-gusts&amp;hwvMapRegion=us" title="">Wind Gusts</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=current_map&amp;hwvWxType=winds&amp;hwvMapRegion=us" title="">Wind Speed</a></li>
+		</ul></li>
+	<li><a class="qmparent" href="JavaScript:void(0);" title="">Radar &amp; Satellite</a>
+		<ul>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=radar2&amp;state=us" title="">Radar</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=satellite&amp;state=us&amp;dpp=0" title="">Satellite</a></li>
+		</ul></li>
+	<li><a class="qmparent" href="JavaScript:void(0);" title="">Severe Weather</a>
+		<ul>
+		<li><a href="/reports/index.php?forecast=stormreports" title="">Severe Weather Reports</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=warningmap&amp;state=us" title="">Warnings, Watches &amp; Advisories</a></li>
+		<li><a href="/reports/index.php?forecast=tropsystems" title="">Hurricanes &amp; Tropical Storms</a></li>
+		<li><a href="http://alerts.weatherforyou.com/alertsbroadcaster/" title="">Warnings by E-mail</a></li>
+		</ul></li>
+	<li><a class="qmparent" href="JavaScript:void(0);" title="">Forecasts</a>
+		<ul>
+		<li><a href="/clickcast/international/" title="">ClickCast</a></li>
+		<li><a href="/reports/index.php?config=&forecast=pass&pass=frontsday1" title="">Fronts</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=map_forecast&amp;hwvWxType=fdew-points&amp;state=us" title="">Dew Points</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=map_forecast&amp;hwvWxType=fhumidity&amp;state=us" title="">Humidity</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=map_forecast&amp;hwvWxType=fjet-stream&amp;state=us" title="">Jet Stream</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=map_forecast&amp;hwvWxType=fqpf-1h&amp;state=us" title="">Precipitation</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=map_forecast&amp;hwvWxType=ftemperatures&amp;state=us" title="">Temperatures</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=map_forecast&amp;hwvWxType=ftemperatures-max&amp;state=us" title="">Temperatures - Daily Maximum</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=map_forecast&amp;hwvWxType=ftemperatures-min&amp;state=us" title="">Temperatures - Daily Minimum</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=map_forecast&amp;hwvWxType=ffeels-like&amp;state=us" title="">Temperatures - Feels Like</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=map_forecast&amp;hwvWxType=fheat-index&amp;state=us" title="">Temperatures - Heat Index</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=map_forecast&amp;hwvWxType=fwind-chill&amp;state=us" title="">Temperatures - Wind Chill</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=map_forecast&amp;hwvWxType=fvisibility&amp;state=us" title="">Visibility</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=map_forecast&amp;hwvWxType=fwind-gustss&amp;state=us" title="">Wind Gusts</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=map_forecast&amp;hwvWxType=fwind-speeds&amp;state=us" title="">Wind Speeds</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=tidesfront" title="">Tides</a></li>
+		</ul></li>
+	<li><a class="qmparent" href="JavaScript:void(0);" title="">Travel</a>
+		<ul>
+		<li><a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=traffic" title="">Road &amp; Traffic Info</a></li>
+		<li><a href="/reports/index.php?forecast=airdelay" title="">Airport Delays</a></li>
+		<li><a href="/reports/index.php?forecast=flightrulesmap&amp;dpp=0" title="">Flight Rules</a></li>
+		<li><a href="/reports/index.php?forecast=pass&amp;pass=skireport" title="">Ski Reports</a></li>
+		</ul></li>
+	<li><a class="qmparent" href="JavaScript:void(0);" title="">Tools</a>
+		<ul>
+		<li><a href="/weather_history/" title="">Weather History</a></li>
+		<li><a href="/weather_computer/" title="">Weather Computer</a></li>
+		<li><a href="/weather_for_websites/" title="">Weather on Your Site</a></li>
+		</ul></li>
+	<li><a class="qmparent" href="JavaScript:void(0);" title="">International</a>
+		<ul>
+		<li><a href="/clickcast/international/region/af.html" title="">Africa</a></li>
+		<li><a href="/clickcast/international/region/ant.html" title="">Antartica</a></li>
+		<li><a href="/clickcast/international/region/as.html" title="">Asia</a></li>
+		<li><a href="/clickcast/international/region/crb.html" title="">Caribbean</a></li>
+		<li><a href="/clickcast/international/region/can.html" title="">Central America</a></li>
+		<li><a href="/clickcast/international/region/eur.html" title="">Europe</a></li>
+		<li><a href="/clickcast/international/region/mid.html" title="">Middle East</a></li>
+		<li><a href="/clickcast/international/region/na.html" title="">North America</a></li>
+		<li><a href="/clickcast/international/region/oc.html" title="">Oceania</a></li>
+		<li><a href="/clickcast/international/region/sa.html" title="">South America</a></li>
+		<li><a href="http://www.pwsweather.com/tools.php" title="">Personal Stations</a></li>
+		</ul></li>
+<li class="qmclear">&nbsp;</li>
+</ul>
+<script type="text/javascript">qm_create(0,false,400,500,false,false,false,false,false);</script>
+</div>
+	<div id="middlepagecontent">
+<div style="width:100%; margin:0px;">
+   <div style="float:left; margin:0px;">
+      <span class="headerText">Brunswick, Maine, United States  (04011)</span><br />
+   </div>
+   <div style="float:right; line-height:10pt; width:130px; margin:0px;"> <span style="font-size:10px;">Lat: 43.91N, Lon: 69.97W</span><br /> 
+      <span  style="font-size:10px;">Wx Zone: MEZ024</span>
+   </div>
+</div>
+<div style="clear:both;"></div>
+<div style="width:100%; margin:0">
+<div style="margin:3px; line-height:14px;">
+	<div style="float:left; width:70px; margin:0px;">
+			<div style="border: solid; border-size: 1px; border-color: orange; line-height: 26px; text-align: center;">
+			<span style="font-size: 13px;">Local Info</span>
+			</div>
+	</div>
+	<div style="float:left; margin:0px;">
+<ul id="qm2" class="qmmc">
+	<li><a href="JavaScript:void(0);" title="">Forecasts</a>
+		<ul>
+		<li><a href="/reports/index.php?config=&amp;forecast=zandh&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;state=me&amp;country=us&amp;icao=KNHZ" title="">Local Weather</a></li>
+		<li><a href="/reports/index.php?config=&amp;forecast=zone&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;country=us&amp;icao=KNHZ" title="">Regional (Zone) Weather</a></li>
+		<li> <a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=hourly&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;state=me&amp;country=US&amp;icao=KNHZ" title=""> Hourly</a></li>
+		<li><a href="/reports/index.php?config=&amp;forecast=feedingtimes&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX">Fish Feeding</a></li>
+		</ul></li>
+	<li><a href="JavaScript:void(0);" title="">Archives</a>
+		<ul>
+		<li><a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=archive&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;state=me&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;hwvMetarIcao=KNHZ&amp;zone=meZ024&amp;cwa=GYX&amp;month=05&amp;day=11&amp;year=2020" title="">Closest Station</a></li> 		<li><a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=archivenws&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;state=me&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;hwvMetarIcao=KNHZ&amp;zone=meZ024&amp;cwa=GYX&amp;month=05&amp;day=11&amp;year=2020" title="">Closest NWS Station</a></li> 		</ul></li>
+	<li><a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=normals&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;hwvRMon=May" title="">Averages</a></li>
+	<li><a href="JavaScript:void(0);" title="">Severe</a> 		<ul> 		<li><a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=warnings_aeris&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX" title="">Warnings</a></li> 		<li><a href="/reports/index.php?forecast=pass&amp;pass=lightning&amp;state=me" title="">Lightning</a></li> 		<li><a href="/reports/index.php?config=&amp;forecast=stormreports&amp;use_state=me&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX">Storm Reports</a></li> 		<li><a href="http://alerts.weatherforyou.com/alertsbroadcaster/" title="">Warnings by E-mail</a></li> 		</ul></li> 	<li><a class="qmparent" href="JavaScript:void(0);" title="">Radar</a> 		<ul> 		<li><a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=interactive_map&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX&amp;loclat=43.91444&amp;loclon=-69.96583" title="">Interactive</a></li> 		<li><a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=radar2&amp;state=me&amp;pands=brunswick%2Cmaine&amp;zipcode=04011" title="">State</a></li> 		</ul></li> 	<li><a class="qmparent" href="JavaScript:void(0);" title="">Satellite</a> 		<ul> 		<li><a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=satellite&amp;hwvSatType=clir&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX&amp;hwvSatAnim=0&amp;hwvSatWidth=640&amp;hwvSatHeight=480" title="">State</a></li> 		<li><a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=interactive_map_satellite&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX&amp;loclat=43.91444&amp;loclon=-69.96583" title="">Interactive</a></li> 		</ul></li> 	<li><a href="/reports/index.php?config=&amp;forecast=riversnearby&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX&amp;lat=43.91444&amp;lon=-69.96583" title="">Rivers</a></li> 
+	<li><a href="JavaScript:void(0);" title="">Nearby</a> 		<ul> 		<li><a href="/places/neighborhoodwx.php?config=&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;state=ME&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX" title="">Neighborhood Weather</a></li>
+		</ul></li> 		<li><a class="qmparent" href="JavaScript:void(0);" title="">State</a> 			<ul> 				<li><a href="/cgi-bin/reports/index.cgi?config=&amp;forecast=pass&amp;pass=currentwx&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX" title="">Weather</a></li> 				<li><a href="/reports/index.php?forecast=pass&amp;pass=lightning&amp;state=me" title="">Lightning</a></li> 				<li><a href="http://www.pwsweather.com/tools.php" title="">Personal Weather Stations</a></li> 				<li><a href="http://www.cocorahs.org/Maps/ViewMap.aspx?type=snow&amp;state=ME" target="_blank">New Snow Reports</a></li> 				<li><a href="http://www.cocorahs.org/Maps/ViewMap.aspx?type=snowdepth&amp;state=ME" target="_blank">Total Snow Depth</a></li> 				<li><a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=skireport&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;state=me&amp;icao=KNHZ" title="">Ski Reports</a></li> 			</ul> 		</li> 	
+		<li><a href="JavaScript:void(0);" title="">Snow</a> 		<ul> 			<li><a href="http://www.cocorahs.org/Maps/ViewMap.aspx?type=snow&amp;state=ME" target="_blank">New Snow Reports</a></li> 			<li><a href="http://www.cocorahs.org/Maps/ViewMap.aspx?type=snowdepth&amp;state=ME" target="_blank">Total Snow Depth</a></li> 		</ul></li> 
+	<li><a href="JavaScript:void(0);" title="">Solunar</a>
+		<ul>
+		<li><a href="/reports/index.php?config=&amp;forecast=feedingtimes&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX">Fish Feeding</a></li>
+		<li><a href="/reports/index.php?config=&amp;forecast=solunar&amp;place=&amp;state=&amp;zipcode=04011&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX" title="">Monthly Sun &amp; Moon</a></li>
+		</ul></li>
+	<li><a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=traffic&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;state=me&amp;icao=KNHZ&amp;loclat=43.91444&amp;loclon=-69.96583" title="">Roads</a></li> 
+<li class="qmclear">&nbsp;</li></ul>
+<script type="text/javascript">qm_create(2,false,0,500,false,false,false,false,false);</script>
+	</div>
+</div>
+</div>
+<div style="clear:both;"></div>
+		<table style="border:0; width:1000px; background-color:white;">
+			<tr>
+				<td style="vertical-align:top; width:660px;">
+<div id='currents'><table style='width:645px;'><tr><td><span class='headerText'>Latest Conditions</span>&nbsp;&nbsp;<span class='subheaderText'><a href='/reports/index.php?config=&amp;forecast=zandh&amp;alt=zandh_metric&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;state=me&amp;country=us' title=''> -&nbsp;&nbsp;Metric Units</a></span></td><td style='width:140px;'></td></tr></table><table style='border:0; width:640px; padding:2px; border-spacing:1px; border-collapse:separate;'><tr><td style='width:55px; text-align:right; vertical-align:top;' rowspan='3'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/sunny.png' alt='Sunny' width='55' height='55' /></td><td style='width:200px; text-align:left; vertical-align:top;' rowspan='3'><span class='Temp'>52&deg;F</span>&nbsp;&nbsp;&nbsp;<span class='SmallTemp'>11&deg;C</span><br /><span class='SmallTemp'>Feels Like 52&deg;F</span>&nbsp;&nbsp; <span style='font-size:14px'>11.1&deg;C</span></td><td style='white-space:nowrap; width:130px;'><span class='Label'>Humidity </span><span class='Value'>62%</span></td><td style='white-space:nowrap;'><span class='Label'>Wind </span><span class='Value'>SW 5 MPH</span></td></tr><tr><td style='white-space:nowrap; width:130px;'><span class='Label'>Dew Point </span><span class='Value'>39&deg;F</span></td><td style='white-space:nowrap; width:130px;'><span class='Label'>Visibility </span><span class='Value'>10 mi.</span></td></tr><tr><td colspan='2' style='white-space:nowrap;'><span class='Label'>Barometer </span><span class='Value'>29.90 in. </span><span style='font-size:14px'>759.5 mm - Steady</span></td></tr><tr><td colspan='4' style='text-align:center; font-size: 12px; line-height: 12pt;'>Report from 2 miles SE of central Brunswick at 8:39 AM Mon, May 11, 2020<br /></td></tr></table></div>					<hr />
+<div id="forecast-top" style="width:100%;">
+	<div style="width:80%; float:left;">
+		<h2 class="headerText" style="margin:0px;">Brunswick, Maine, Weather Forecasts<span class="subheaderText"><a href="/reports/index.php?config=&amp;forecast=zandh&amp;alt=zandh_metric&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;state=me&amp;country=us&amp;icao=KNHZ" title=""> -&nbsp;&nbsp;Metric Units</a></span></h2>
+	</div>
+	<div style="clear:both;"></div>
+</div>
+		<div class='cal_wrap'>
+<div class='cal_colwrap cal_dayiconhi' style='background-color:#efefef;'><span class='cal_day'>Mon</span><br /><span class='cal_date'>May 11</span><br /><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/pcloudyr.png' style='width:55px; height:55px; border:0;' alt='Partly Cloudy with Scattered Showers' class='Tips1' title='Partly Cloudy with Scattered Showers' /><br /><span class='cal_hi'>56&deg;F</span></div><div class='cal_colwrap cal_dayiconhi' style='background-color:#e3e3e3;'><span class='cal_day'>Tue</span><br /><span class='cal_date'>May 12</span><br /><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/pcloudy.png' style='width:55px; height:55px; border:0;' alt='Mostly Sunny' class='Tips1' title='Mostly Sunny' /><br /><span class='cal_hi'>54&deg;F</span></div><div class='cal_colwrap cal_dayiconhi' style='background-color:#efefef;'><span class='cal_day'>Wed</span><br /><span class='cal_date'>May 13</span><br /><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/pcloudy.png' style='width:55px; height:55px; border:0;' alt='Mostly Sunny' class='Tips1' title='Mostly Sunny' /><br /><span class='cal_hi'>57&deg;F</span></div><div class='cal_colwrap cal_dayiconhi' style='background-color:#e3e3e3;'><span class='cal_day'>Thu</span><br /><span class='cal_date'>May 14</span><br /><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/pcloudy.png' style='width:55px; height:55px; border:0;' alt='Mostly Sunny' class='Tips1' title='Mostly Sunny' /><br /><span class='cal_hi'>62&deg;F</span></div><div class='cal_colwrap cal_dayiconhi' style='background-color:#efefef;'><span class='cal_day'>Fri</span><br /><span class='cal_date'>May 15</span><br /><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/mcloudyr.png' style='width:55px; height:55px; border:0;' alt='Mostly Cloudy with Scattered Showers' class='Tips1' title='Mostly Cloudy with Scattered Showers' /><br /><span class='cal_hi'>58&deg;F</span></div><div class='cal_colwrap cal_dayiconhi' style='background-color:#e3e3e3;'><span class='cal_day'>Sat</span><br /><span class='cal_date'>May 16</span><br /><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/pcloudyr.png' style='width:55px; height:55px; border:0;' alt='Partly Cloudy with Isolated Showers' class='Tips1' title='Partly Cloudy with Isolated Showers' /><br /><span class='cal_hi'>62&deg;F</span></div><div class='cal_colwrap cal_dayiconhi' style='background-color:#efefef;'><span class='cal_day'>Sun</span><br /><span class='cal_date'>May 17</span><br /><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/mcloudyr.png' style='width:55px; height:55px; border:0;' alt='Mostly Cloudy with Scattered Showers' class='Tips1' title='Mostly Cloudy with Scattered Showers' /><br /><span class='cal_hi'>59&deg;F</span></div><div class='cal_colwrap cal_low' style='background-color:#efefef;'>40&deg;F</div><div class='cal_colwrap cal_low' style='background-color:#e3e3e3;'>35&deg;F</div><div class='cal_colwrap cal_low' style='background-color:#efefef;'>39&deg;F</div><div class='cal_colwrap cal_low' style='background-color:#e3e3e3;'>45&deg;F</div><div class='cal_colwrap cal_low' style='background-color:#efefef;'>46&deg;F</div><div class='cal_colwrap cal_low' style='background-color:#e3e3e3;'>48&deg;F</div><div class='cal_colwrap cal_low' style='background-color:#efefef;'>46&deg;F</div><div class='cal_colwrap' style='height: 42px; background-color:#efefef;'><a href='' onclick='return false;' class='Tips3' title='Wind speed and direction'><span class='cal_wind'>SW&nbsp;9 MPH</span></a><br /><a href='' onclick='return false;' class='Tips3' title='Probability of Precipitation'><span class='cal_pop'>Precip 40&#37;</span></a></div><div class='cal_colwrap' style='height: 42px; background-color:#e3e3e3;'><a href='' onclick='return false;' class='Tips3' title='Wind speed and direction'><span class='cal_wind'>NW&nbsp;14 MPH</span></a><br />&nbsp;</div><div class='cal_colwrap' style='height: 42px; background-color:#efefef;'><a href='' onclick='return false;' class='Tips3' title='Wind speed and direction'><span class='cal_wind'>WNW&nbsp;13 MPH</span></a><br />&nbsp;</div><div class='cal_colwrap' style='height: 42px; background-color:#e3e3e3;'><a href='' onclick='return false;' class='Tips3' title='Wind speed and direction'><span class='cal_wind'>WNW&nbsp;7 MPH</span></a><br />&nbsp;</div><div class='cal_colwrap' style='height: 42px; background-color:#efefef;'><a href='' onclick='return false;' class='Tips3' title='Wind speed and direction'><span class='cal_wind'>SSE&nbsp;6 MPH</span></a><br /><a href='' onclick='return false;' class='Tips3' title='Probability of Precipitation'><span class='cal_pop'>Precip 50&#37;</span></a></div><div class='cal_colwrap' style='height: 42px; background-color:#e3e3e3;'><a href='' onclick='return false;' class='Tips3' title='Wind speed and direction'><span class='cal_wind'>NNW&nbsp;5 MPH</span></a><br /><a href='' onclick='return false;' class='Tips3' title='Probability of Precipitation'><span class='cal_pop'>Precip 20&#37;</span></a></div><div class='cal_colwrap' style='height: 42px; background-color:#efefef;'><a href='' onclick='return false;' class='Tips3' title='Wind speed and direction'><span class='cal_wind'>S&nbsp;2 MPH</span></a><br /><a href='' onclick='return false;' class='Tips3' title='Probability of Precipitation'><span class='cal_pop'>Precip 30&#37;</span></a></div>		</div>
+			<div class="tabberlive" id="tab2" style="text-align:center;">
+				<ul class="tabbernav">
+					<li>
+						<a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=hourly&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;place=brunswick&amp;state=me&amp;country=US&amp;icao=KNHZ"><span style="font-size:14px;">Hourly Forecast</span></a>
+					</li>
+					<li>
+						<a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=extended&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;icao=KNHZ"><span style="font-size:14px;">Extended Forecast</span></a>
+					</li>
+					<li>
+						<a href="/reports/index.php?config=&amp;forecast=zone&amp;pands=brunswick%2Cmaine&amp;zipcode=04011&amp;icao=KNHZ"><span style="font-size:14px;">Regional Forecast</span></a>
+					</li>
+					<li>
+						<a href="/printforecast/printforecast.php?place=brunswick&amp;state=me"><span style="font-size:14px;">Print Forecast</span><img src="https://d2hhjsu0v3gh4o.cloudfront.net/images/Printer-icon.png" style="width:18px;height:18px;vertical-align:middle;border:0px;" alt="Printable Page" /></a>
+					</li>
+				</ul>
+			</div>
+					<hr />
+<div id="forecastRow">
+						<span style="font-size: 20px; font-weight: bold; color: #133960;">Forecast Details</span>
+<table style="border:0; width:100%; border-spacing:0; border-collapse:separate; padding:5px;">
+<tr><td colspan='2' style='background: #efefef;'><span class='Title'>Today</span></td></tr><tr><td style='text-align:left; vertical-align:top; width:55px; background: #efefef;'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/pcloudyr.png' style='width:55px; height:58px; border:0;' alt='Scattered Showers' /></td><td style='vertical-align:top; background: #efefef;'><span style='font-size: 16px;  font-weight: normal; color: #000000;'>Day: Partly cloudy with scattered showers. Highs around 56&deg;F. Southwest wind to 9 MPH, gusting to 16 MPH. Chance of precipitation 40 percent. New precipitation amounts less than one tenth of an inch possible. </span><br /><br /></td></tr><tr><td style='text-align:left; vertical-align:top; width:55px; background: #efefef;'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/showersn.png' style='width:55px; height:58px; border:0;' alt='Showers' /></td><td style='vertical-align:top; background: #efefef;'><span style='font-size: 16px;  font-weight: normal; color: #000000;'>Night: Mostly cloudy with  showers likely. Lows around 40&deg;F. Wind chill values as low as 33&deg;F. South southeast wind 5 to 11 MPH, gusting to 19 MPH. Chance of precipitation 60 percent. New precipitation amounts up to one quarter inch possible.</span><br /><br /></td></tr><tr><td colspan='2' style='background: #e3e3e3;'><span class='Title'>Tuesday May 12</span></td></tr><tr><td style='text-align:left; vertical-align:top; width:55px; background: #e3e3e3;'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/pcloudy.png' style='width:55px; height:58px; border:0;' alt='Mostly Sunny' /></td><td style='vertical-align:top; background: #e3e3e3;'><span style='font-size: 16px;  font-weight: normal; color: #000000;'>Day: Mostly sunny. Highs around 54&deg;F. Northwest wind to 14 MPH, gusting to 22 MPH. </span><br /><br /></td></tr><tr><td style='text-align:left; vertical-align:top; width:55px; background: #e3e3e3;'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/pcloudyn.png' style='width:55px; height:58px; border:0;' alt='Mostly Clear' /></td><td style='vertical-align:top; background: #e3e3e3;'><span style='font-size: 16px;  font-weight: normal; color: #000000;'>Night: Mostly clear. Lows around 35&deg;F. Wind chill values as low as 30&deg;F. Northwest wind to 10 MPH, gusting to 18 MPH. </span><br /><br /></td></tr><tr><td colspan='2' style='background: #efefef;'><span class='Title'>Wednesday May 13</span></td></tr><tr><td style='text-align:left; vertical-align:top; width:55px; background: #efefef;'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/pcloudy.png' style='width:55px; height:58px; border:0;' alt='Mostly Sunny' /></td><td style='vertical-align:top; background: #efefef;'><span style='font-size: 16px;  font-weight: normal; color: #000000;'>Day: Mostly sunny. Highs around 57&deg;F. West northwest wind 8 to 13 MPH, gusting to 22 MPH. </span><br /><br /></td></tr><tr><td style='text-align:left; vertical-align:top; width:55px; background: #efefef;'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/clearn.png' style='width:55px; height:58px; border:0;' alt='Clear' /></td><td style='vertical-align:top; background: #efefef;'><span style='font-size: 16px;  font-weight: normal; color: #000000;'>Night: Clear. Lows around 39&deg;F. Northwest wind to 9 MPH, gusting to 16 MPH. </span><br /><br /></td></tr><tr><td colspan='2' style='background: #e3e3e3;'><span class='Title'>Thursday May 14</span></td></tr><tr><td style='text-align:left; vertical-align:top; width:55px; background: #e3e3e3;'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/pcloudy.png' style='width:55px; height:58px; border:0;' alt='Mostly Sunny' /></td><td style='vertical-align:top; background: #e3e3e3;'><span style='font-size: 16px;  font-weight: normal; color: #000000;'>Day: Mostly sunny. Highs around 62&deg;F. West northwest wind to 7 MPH, gusting to 13 MPH. </span><br /><br /></td></tr><tr><td style='text-align:left; vertical-align:top; width:55px; background: #e3e3e3;'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/mcloudyrn.png' style='width:55px; height:58px; border:0;' alt='Scattered Showers' /></td><td style='vertical-align:top; background: #e3e3e3;'><span style='font-size: 16px;  font-weight: normal; color: #000000;'>Night: Mostly cloudy with scattered showers. Lows around 45&deg;F. South southwest wind to 5 MPH. Chance of precipitation 30 percent. </span><br /><br /></td></tr><tr><td colspan='2' style='background: #efefef;'><span class='Title'>Friday May 15</span></td></tr><tr><td style='text-align:left; vertical-align:top; width:55px; background: #efefef;'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/mcloudyr.png' style='width:55px; height:58px; border:0;' alt='Scattered Showers' /></td><td style='vertical-align:top; background: #efefef;'><span style='font-size: 16px;  font-weight: normal; color: #000000;'>Day: Mostly cloudy with scattered showers. Highs around 58&deg;F. South southeast wind to 6 MPH. Chance of precipitation 50 percent. </span><br /><br /></td></tr><tr><td style='text-align:left; vertical-align:top; width:55px; background: #efefef;'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/mcloudyrn.png' style='width:55px; height:58px; border:0;' alt='Scattered Showers' /></td><td style='vertical-align:top; background: #efefef;'><span style='font-size: 16px;  font-weight: normal; color: #000000;'>Night: Mostly cloudy with scattered showers. Lows around 46&deg;F. Light wind. Chance of precipitation 40 percent. </span><br /><br /></td></tr><tr><td colspan='2' style='background: #e3e3e3;'><span class='Title'>Saturday May 16</span></td></tr><tr><td style='text-align:left; vertical-align:top; width:55px; background: #e3e3e3;'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/pcloudyr.png' style='width:55px; height:58px; border:0;' alt='Isolated Showers' /></td><td style='vertical-align:top; background: #e3e3e3;'><span style='font-size: 16px;  font-weight: normal; color: #000000;'>Day: Partly cloudy with isolated showers. Highs around 62&deg;F. North northwest wind to 5 MPH. Chance of precipitation 20 percent. </span><br /><br /></td></tr><tr><td style='text-align:left; vertical-align:top; width:55px; background: #e3e3e3;'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/mcloudyrn.png' style='width:55px; height:58px; border:0;' alt='Scattered Showers' /></td><td style='vertical-align:top; background: #e3e3e3;'><span style='font-size: 16px;  font-weight: normal; color: #000000;'>Night: Mostly cloudy with scattered showers. Lows around 48&deg;F. Light wind. Chance of precipitation 20 percent. </span><br /><br /></td></tr><tr><td colspan='2' style='background: #efefef;'><span class='Title'>Sunday May 17</span></td></tr><tr><td style='text-align:left; vertical-align:top; width:55px; background: #efefef;'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/aeris1410/mcloudyr.png' style='width:55px; height:58px; border:0;' alt='Scattered Showers' /></td><td style='vertical-align:top; background: #efefef;'><span style='font-size: 16px;  font-weight: normal; color: #000000;'>Day: Mostly cloudy with scattered showers. Highs around 59&deg;F. Light wind. Chance of precipitation 30 percent. </span><br /><br /></td></tr></table>
+</div>
+<hr /><div id='justTides'><span class='headerText'>Today's Tides Information</span>&nbsp;&nbsp;&nbsp;<a href='/reports/index.php?forecast=tides&place=Brunswick&amp;state=ME&amp;zipcode=04011&amp;country=us&amp;county=23005&amp;zone=meZ024&amp;icao=KNHZ'><span class='subheaderText'>More tide info</span></a><table border='0' cellpadding='2' cellspacing='1' width='100%'><tr><td align='center'><span style='font-size: 16px; font-weight: bold;'>High Tides</span></td><td align='center'><span style='font-size: 16px; font-weight: bold;'>Low Tides</span></td></tr><tr><td align='center'><span style='font-size: 16px;'>4.58 ft. at 5:03 AM<br />3.97 ft. at 5:51 PM<br /></span></td><td align='center'><span style='font-size: 16px;'>0.09 ft. at 12:51 AM<br />-0.36 ft. at 1:33 PM<br /></span></td></tr><tr><td align='center' colspan='2'><span style='font-size: 11px; line-height: 10pt;'>Tide report location: Brunswick, Androscoggin River, ME, 0.5 mi. NNE of Brunswick</span></td></tr></table>					<hr />
+<div id="astro">
+<table style="border:0; width:460px;">
+  <tr>
+    <td colspan="3"><span class="headerText">Sun &amp; Moon</span>&nbsp;&nbsp;<a href="/reports/index.php?config=&amp;forecast=solunar&amp;place=&amp;state=&amp;zipcode=04011&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX" title=""><span class="subheaderText">Monthly</span></a></td>
+  </tr>
+  <tr>
+<td style='line-height:12pt;'><span class='Label'>Morning Twilight</span></td><td style='line-height:12pt;'><span class='Value'>4:44 AM</span></td><td style='vertical-align:top; text-align:center;' rowspan='4'><img src='https://d2hhjsu0v3gh4o.cloudfront.net/reports/images/moonphases1410a/m19.gif' width='50' height='50' alt='waning gibbous' /><br /><span class='Moonname'>Waning Gibbous</span></td></tr><tr><td style='line-height:12pt;'><span class='Label'>Sunrise</span></td><td style='line-height:12pt;'><span class='Value'>5:17 AM</span></td></tr><tr><td style='line-height:12pt;'><span class='Label'>Sunset</span></td><td style='line-height:12pt;'><span class='Value'>7:54 PM</span></td></tr><tr><td style='line-height:12pt;'><span class='Label'>Evening Twilight</span></td><td style='line-height:12pt;'><span class='Value'>8:27 PM</span></td></tr><tr><td colspan='3'><span class='headerText'>&nbsp;</span></td>  </tr>
+</table>
+</div>
+					<hr />
+<span class="headerText">Contiguous United States Extremes</span>
+<table border="0" width="100%">
+    <tr>
+        <td class="default" align="center">Sun's High Temperature: 109 at Death Valley Ca</td>
+    </tr>
+        <tr>
+        <td class="default" align="center">Sun's Low Temperature: 8 at Mount Washington Nh</td>
+    </tr>
+        <tr>
+                <td>&nbsp;</td>
+        </tr>
+</table>
+					<hr />
+					<div style="padding: 0px 0px 5px 0px;">
+						<span class="headerText">Weather Folklore</span><br />
+<span style="font-style:italic; font-size:14px;">When walls are wet, expect some rain.</span>
+        					<span style="font-style:italic; font-size:16px; font-weight: normal; color: #000000;"></span>
+         				</div>
+				</td>
+				<td style="width:340px; text-align:center; vertical-align:top; font-size:14px;">
+					<noscript>Javascript is required to utilize all the services WeatherForYou.com has to offer<br /></noscript>
+					<script type="text/javascript">
+						//<![CDATA[
+						document.write("<div style='position:relative; text-align:center; z-index:80;'>");
+						document.write("<img src='/aeris/osm/zandh_radar_header_255.png' width='255' height'15' border='0' alt='' /><br />");
+						document.write("<div id='map-canvas' style='margin:auto;'></div>");
+						document.write("<a href='/reports/index.php?config=&amp;forecast=pass&amp;pass=interactive_map&amp;pands=&amp;zipcode=04011&amp;place=brunswick&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX&amp;loclat=43.91444&amp;loclon=-69.96583' title=''><span style='font-size:16px;'>Click here for Interactive Radar</span></a>");
+						document.write("</div>");
+						//]]>
+					</script>
+					<br />
+<div align="center" id="weatherforyou_300x250_336x280_Sidebar_ATF">
+<script data-cfasync="false" type="text/javascript">
+    freestar.config.enabled_slots.push({ placementName: "weatherforyou_300x250_336x280_Sidebar_ATF", slotId: "weatherforyou_300x250_336x280_Sidebar_ATF" });
+</script>
+</div>
+
+										<a href='/clearsky.php'><img src='/clearsky/images/clearsky_promo_2.jpg' width='300' height='50' border='0' alt='Ad Free Weather' /></a><br /> 					Already a Clear Sky subscriber? <a href='/clearsky/login/'>Click here to login</a><br /> 				
+					<br />
+					<br />More Brunswick, ME, Weather Information
+					<br /><a href="/weather/warnings/me/brunswick.html"><span style="font-size:14px">Weather Warnings</span></a>
+					<br /><a href="/reports/index.php?config=&amp;forecast=pass&amp;pass=interactive_map&amp;pands=&amp;zipcode=04011&amp;place=brunswick&amp;country=us&amp;county=23005&amp;icao=KNHZ&amp;zone=meZ024&amp;cwa=GYX&amp;loclat=43.91444&amp;loclon=-69.96583"><span style="font-size:14px">Doppler Radar</span></a>
+					<br /><a href="/weather/radar/regional/maine/brunswick.html"><span style="font-size:14px">Regional Weather Radar</span></a>
+					<br /><a href="/weather/maine/state.html"><span style="font-size:14px">State Weather Conditions</span></a>
+					<br /><a href="/weather/maine/satellite/latest.php"><span style="font-size:14px">Satellite</span></a>
+					<div style="margin-top: 5px;">&nbsp;</div>
+<div align="center" id="weatherforyou_300x250_160x600_300x600_336x280_Sidebar_BTF">
+<script data-cfasync="false" type="text/javascript">
+    freestar.config.enabled_slots.push({ placementName: "weatherforyou_300x250_160x600_300x600_336x280_Sidebar_BTF", slotId: "weatherforyou_300x250_160x600_300x600_336x280_Sidebar_BTF" });
+</script>
+</div>
+
+				</td>
+			</tr>
+		</table>
+	</div>
+	<ul id="qm1" class="qmmc">
+		<li><a href="/" title="Home">Home</a></li>
+		<li><a href="/clickcast/international/" title="ClickCast">ClickCast</a></li>
+		<li><a href="/about.php" title="About">About WeatherForYou.com</a></li>
+		<li><a href="/privacy.php" title="Privacy Statement">Privacy Statement</a></li>
+		<li><a href="/suggestion_box/?place=Brunswick&amp;state=ME&amp;zipcode=04011&amp;country=us&amp;county=23005&amp;zone=meZ024&amp;icao=KNHZ" title="Contact Us">Contact Us</a></li>
+		<li class="qmclear">&nbsp;</li>
+	</ul>
+	<script type="text/javascript">qm_create(1,false,0,500,false,false,false,false,false);</script>
+	<table style="width:1000px; border:0; text-align:center; padding:2px; border-spacing:1px; border-collapse:separate;">
+		<tbody>
+			<tr>
+				<td style="width:995px; text-align:center; vertical-align:middle; font-size: 12px;">WeatherForYou.com, LLC is not responsible for any damages or problems caused by this service.
+					Current weather conditions for Brunswick, ME, are obtained from the closest government operated station, a personal station contributing to our <a href="http://pwsweather.com"><span style="color: black; font-size: 12px;">PWSweather.com</span></a> network which may have varying degrees of accuracy or from the <a href="https://madis.ncep.noaa.gov/" target="_blank">Meteorological Assimilation Data Ingest System (MADIS)</a>. WeatherForYou.com, NOAA and their data providers disclaim liability of any kind whatsoever, including, without limitation, liability for quality, performance, merchantability and fitness for a particular purpose arising out of the use or inability to use the data.
+					Weather forecasts are powered by <a href="https://www.aerisweather.com/" target="_blank"><span style="color: black; font-size: 12px;">AerisWeather</span></a>.
+					Like all things, this site belongs to <a href="http://www.needhim.org/"><span style="color: black; font-size: 12px;">Jesus Christ</span></a>... He just trusts us to maintain it. If you have any questions or comments email
+					<a title="" href="mailto:webmaster@weatherforyou.com"><span style="color: black; font-size: 12px;">webmaster@weatherforyou.com</span></a>
+					<br /><br />Copyright &copy; 2020, WeatherForYou.com LLC. All rights reserved.
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/leaflet/leaflet.js"></script>
+    <script type="text/javascript" src="https://cdn.aerisjs.com/aeris.js"></script>
+    <script type="text/javascript" src="/aeris/osm/apikeys.js"></script>
+  <script type="text/javascript">
+	  $(document).ready(function() {
+          var map = new aeris.maps.Map('map-canvas', {
+              center: ['43.914', '-69.966'],
+              zoom: 8,
+              scrollZoom: false
+          });
+          // disable the leaflet controls
+          var lMap = map.getView();
+          lMap.dragging.disable();
+          lMap.touchZoom.disable();
+          lMap.doubleClickZoom.disable();
+          lMap.scrollWheelZoom.disable();
+          lMap.boxZoom.disable();
+          lMap.keyboard.disable();
+          if (lMap.tap) lMap.tap.disable();
+          document.getElementById('map-canvas').style.cursor = 'default';
+          $(".leaflet-control-zoom").css("visibility", "hidden");
+          // add radar
+          var radar = new aeris.maps.layers.Radar({
+              apiId: apiKeys.aeris.id,
+              apiSecret: apiKeys.aeris.secret
+          });
+          radar.setMap(map);
+          radar.setOpacity(0.6);
+      });
+  </script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-229678-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script type="text/javascript" src="https://edge.quantserve.com/quant.js"></script>
+<script type="text/javascript">_qacct="p-baVnAvFa2o6VQ";quantserve();</script>
+<noscript>
+<a href="https://www.quantcast.com/p-baVnAvFa2o6VQ" target="_blank"><img src="https://pixel.quantserve.com/pixel/p-baVnAvFa2o6VQ.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/></a>
+</noscript>
+<script async type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=451231046"></script>
+</body>
+</html>
