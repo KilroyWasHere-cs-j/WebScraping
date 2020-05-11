@@ -25,7 +25,8 @@ rawHtmlFile - RawHtml.txt
 // String to add in front of URLs
 http? - http://
 
-ShowOutputText - True
+//Show output textbox
+ShowOutputText - False
 
 // Closes app after all processes are done
 AutoClose - True

@@ -98,7 +98,7 @@ namespace WebScraping_wf.cs
                 if(line.Contains(queryConfig("First - ")) == true && line.Contains(queryConfig("Second - ")) == true)
                 {
                     //MessageBox.Show("Item found", $"Item found at line number: {lineNumberCounter}", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //  MessageBox.Show(line + "Found at line: " + lineNumberCounter.ToString());
+                    //MessageBox.Show(line + "Found at line: " + lineNumberCounter.ToString());
                     StreamWriter writer = new StreamWriter("TextFile1.txt");
                     writer.WriteLine(line);
                     writer.Close();
