@@ -29,7 +29,7 @@ http? - http://
 ShowOutputText - False
 
 // Closes app after all processes are done
-AutoClose - True
+AutoClose - False
 
 // File to output found data to
 OutputFile - C:\\TxtFiles\\WeatherTempTracker.txt

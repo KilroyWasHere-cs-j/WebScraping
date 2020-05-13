@@ -1,0 +1,13 @@
+﻿V.1.2.
+
+Last update: 04/12/2020
+
+Developed by: Gabriel Tower
+
+**************************************************************************************************************************
+This app is designed to scrap a preset web page [https://www.weatherforyou.com/reports/index.php?pands=brunswick%2Cmaine]
+for general infomation about the curretn weather in Brunswick Maine USA. The collected data is entered into a text file
+[PostProcessOutput.txt]. The raw html from the web page is stored in a text file as well [RawHtml.txt]. There is a 
+configuration file attached to this project, this file can be used to change diffent aspects of the program
+[Form1FunctionConfig.txt]. The attached json file is used to make visual changes to the UI [UIConfig.json]
+**************************************************************************************************************************

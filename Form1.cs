@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace WebScraping_wf.cs
 {
@@ -36,8 +38,6 @@ namespace WebScraping_wf.cs
             {
 
             }
-            //https://www.weatherforyou.com/reports/index.php?pands=brunswick%2Cmaine  
-            //https://www.ebay.com/sch/i.html?_nkw=Chemical+Suits&_in_kw=1&_ex_kw=&_sacat=0&_udlo=&_udhi=&_ftrt=901&_ftrv=1&_sabdlo=&_sabdhi=&_samilow=&_samihi=&_sadis=15&_stpos=&_sargn=-1%26saslc%3D1&_salic=1&_sop=12&_dmd=1&_ipg=50&_fosrp=1
         }
 
         private void loadUpHtml()
@@ -116,7 +116,7 @@ namespace WebScraping_wf.cs
          *                 int indexOfFirstQuotes = subOfContent.IndexOf(
                 string subOfContentQuotes = subOfContent.
          */
-
+        #region dataProcessing
         private void postProcess(string item, long lineNumber)
         {
             //<summary>
@@ -145,8 +145,8 @@ namespace WebScraping_wf.cs
             {
 
             }
-
         }
+        #endregion    
 
         private void printOutData(string data)
         {
@@ -191,6 +191,7 @@ namespace WebScraping_wf.cs
             return date + " " + time;
         }
 
+        #region Config
         public string queryConfig(string idOfItem)
         {
             //<summary>
@@ -210,7 +211,9 @@ namespace WebScraping_wf.cs
             reader.Dispose();
             return $"No item with the give ID [ {idOfItem} ] was found"; //if it can't find the item
         }
+        #endregion
 
+        #region Buttons
         private void LoadHtml_Click(object sender, EventArgs e)
         {
             //<summary>
@@ -223,10 +226,13 @@ namespace WebScraping_wf.cs
             }
             else
             {
+#pragma warning disable CS1717 // Assignment made to same variable
                 url = url;
+#pragma warning restore CS1717 // Assignment made to same variable
                 loadUpHtml();
             }
         }
+        #endregion
 
         private void showConfigbtn_Click(object sender, EventArgs e)
         {
