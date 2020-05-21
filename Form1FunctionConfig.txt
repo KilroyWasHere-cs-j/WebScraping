@@ -40,4 +40,4 @@ ClearOutputFile - False
 //Show the web pages raw HTML
 ShowRawHTML - False
 
-OpenForbiddenFile - True
+OpenForbiddenFile - False
