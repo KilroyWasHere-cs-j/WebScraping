@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 namespace WebScraping_wf.cs
 {
@@ -21,25 +19,45 @@ namespace WebScraping_wf.cs
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (queryConfig("OpenForbiddenFile - ") == "True")
+            {
+                TheForbiddenFunction();
+                loadUpHtml();
+                lineNumberCounter = long.Parse(queryConfig("lineCount - "));
+                if (queryConfig("ClearOutputFile - ") == "True")
+                {
+                    StreamWriter cleaner = new StreamWriter(queryConfig("OutputFile - "));
+                    cleaner.Write($"Last cleaned at: {getDateTime()}");
+                    cleaner.Close();
+                    cleaner.Dispose();
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                loadUpHtml();
+                lineNumberCounter = long.Parse(queryConfig("lineCount - "));
+                if (queryConfig("ClearOutputFile - ") == "True")
+                {
+                    StreamWriter cleaner = new StreamWriter(queryConfig("OutputFile - "));
+                    cleaner.Write($"Last cleaned at: {getDateTime()}");
+                    cleaner.Close();
+                    cleaner.Dispose();
+                }
+                else
+                {
+
+                }
+            }
             //<summary>
             //load the html from the web page into a txt file for later refernce
             //also insures that the URL input text box has something in it 
             //<summary>
-            loadUpHtml();
-            lineNumberCounter = long.Parse(queryConfig("lineCount - "));
-            if(queryConfig("ClearOutputFile - ") == "True")
-            {
-                StreamWriter cleaner = new StreamWriter(queryConfig("OutputFile - "));
-                cleaner.Write($"Last cleaned at: {getDateTime()}");
-                cleaner.Close();
-                cleaner.Dispose();
-            }
-            else
-            {
-
-            }
         }
-
+        #region HTML_Loader
         private void loadUpHtml()
         {
             string htmlFile = queryConfig("rawHtmlFile - ");
@@ -49,9 +67,10 @@ namespace WebScraping_wf.cs
             writer.Dispose();
             WebClient client = new WebClient();
             client.DownloadFile(url, "RawHtml.txt"); // needs try catch [404] error
-            if (ShowHtmlRawRB.Checked == true)
+            if(queryConfig("ShowRawHTML - ") == "True")
             {
-                ShowHtmlRawRB.Checked = false;
+                ShowHtmlRawRB.Checked = false;  //Someone tell me why I added this...
+                Process.Start("RawHtml.txt");
                 //Process notePad = Process.Start(htmlFile);
                 client.Dispose();
                 scrap();
@@ -63,24 +82,23 @@ namespace WebScraping_wf.cs
             }
             //OpenURLInBrowser(UrlTextBox.Text);
         }
+        #endregion
 
+        #region WebVeiwer
         private void OpenURLInBrowser(string url)
         {
+            //<summary>
+            //Load web page onto Form1 
+            //only works with UI enabled
+            //<summary>
             if (!url.StartsWith("http://") && !url.StartsWith("https://"))
             {
                 url = "http://" + url;
             }
-
-            try
-            {
-                
-            }
-            catch (System.UriFormatException)
-            {
-                return;
-            }
         }
+        #endregion
 
+        #region ScrapFunction
         private void scrap()
         {
             //<summary>
@@ -107,13 +125,14 @@ namespace WebScraping_wf.cs
                 }
                 else
                 {
-
+                    //Couldn't find either first query or second query
                 }
             }
             reader.Dispose();
         }
+        #endregion
         /*
-         *                 int indexOfFirstQuotes = subOfContent.IndexOf(
+         *      int indexOfFirstQuotes = subOfContent.IndexOf()
                 string subOfContentQuotes = subOfContent.
          */
         #region dataProcessing
@@ -143,13 +162,18 @@ namespace WebScraping_wf.cs
             }
             catch
             {
-
+                MessageBox.Show("Error", "Cannot find the specified data", MessageBoxButtons.OK, MessageBoxIcon.Error); //lets user know if the data couldn't be found
             }
         }
-        #endregion    
+        #endregion
 
+
+        #region FileWriter
         private void printOutData(string data)
         {
+            //<summary>
+            //Prints out the data to the output file
+            //<summary>
             string outPutFile = queryConfig("OutputFile - ");
             string file = string.Empty;
             StreamReader reader = new StreamReader(outPutFile);
@@ -169,7 +193,7 @@ namespace WebScraping_wf.cs
             }
             else
             {
-
+                //User doesn't want to show 
             }
             if(queryConfig("AutoClose - ") == "True")
             {
@@ -177,19 +201,25 @@ namespace WebScraping_wf.cs
             }
             else
             {
-
+                //User doesn't want auto closeing
             }
-            reader.Dispose();
+            reader.Dispose(); //disposes of reader and writer so that it get rid of RAM
             writer.Dispose();
         }
+        #endregion
 
+        #region DateTime
         private string getDateTime()
         {
+            //<summary>
+            //Gets the current date and time off of the host computers internal clock
+            //<summary>
             DateTime dateTime = DateTime.Now;
             string date = dateTime.ToString("D");
             string time = dateTime.ToString("HH:mm");
             return date + " " + time;
         }
+        #endregion
 
         #region Config
         public string queryConfig(string idOfItem)
@@ -226,9 +256,6 @@ namespace WebScraping_wf.cs
             }
             else
             {
-#pragma warning disable CS1717 // Assignment made to same variable
-                url = url;
-#pragma warning restore CS1717 // Assignment made to same variable
                 loadUpHtml();
             }
         }
@@ -246,8 +273,14 @@ namespace WebScraping_wf.cs
 
         void thread1()
         {
+            //really don't need this anymore
             Process.Start("Form1FunctionConfig.txt");
             showConfigbtn.BackColor = Color.Green;
+        }
+
+        void TheForbiddenFunction()
+        {
+            Process.Start("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
         }
     }
 }
